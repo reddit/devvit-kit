@@ -8,7 +8,7 @@ Kit includes both UI components and general backend patterns that simplifies com
 
 To use Kit, navigate to your devvit project in your terminal and install the package:
 
-` npm install @devvit/kit`
+`npm install @devvit/kit`
 
 ## Usage
 
