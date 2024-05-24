@@ -1,7 +1,6 @@
 import { Devvit } from "@devvit/public-api";
 import type { BlockElement } from "@devvit/public-api";
 import { PixelPadding } from "./index.js";
-import { describe, expect } from "vitest";
 
 describe("Better padding", () => {
   it("does nothing if wrapped around non-block element", () => {

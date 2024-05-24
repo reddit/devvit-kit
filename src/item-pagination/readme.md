@@ -8,7 +8,7 @@ A data helper that makes it easier to split large sets of data into smaller chun
 
 Open your project folder in the terminal app.
 
-Run `npm intall @devvit/kit`
+Run `npm install @devvit/kit --save`
 
 ### Step 2: Import the `usePagination` function
 

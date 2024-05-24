@@ -8,7 +8,7 @@ A component that provides a simple column layout
 
 Open your project folder in terminal app.
 
-Run `npm intall @devvit/kit`
+Run `npm install @devvit/kit --save`
 
 ### Step 2: Import the `Columns` component
 

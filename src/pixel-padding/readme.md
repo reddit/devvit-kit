@@ -8,7 +8,7 @@ A component that lets you set padding from any side using pixel values.
 
 Open your project folder in the terminal app.
 
-Run `npm intall @devvit/kit`
+Run `npm install @devvit/kit --save`
 
 ### Step 2: Import the `PixelPadding` component
 

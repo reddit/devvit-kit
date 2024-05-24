@@ -1,7 +1,43 @@
 import { Devvit } from "@devvit/public-api";
+import type { BlockElement } from "@devvit/public-api/devvit/Devvit.js";
+
+type PixelPaddingProps = {
+  /**
+   * Pixel value for padding on all sides. This can be overridden by more specific padding properties.
+   */
+  all?: SizePx;
+  /**
+   * Pixel value for padding on left and right sides. This can be overridden by more specific padding properties.
+   */
+  x?: SizePx;
+  /**
+   * Pixel value for padding on top and bottom sides. This can be overridden by more specific padding properties.
+   */
+  y?: SizePx;
+  /**
+   * Pixel value for padding on the top side.
+   */
+  top?: SizePx;
+  /**
+   * Pixel value for padding on the bottom side.
+   */
+  bottom?: SizePx;
+  /**
+   * Pixel value for padding on the left side.
+   */
+  left?: SizePx;
+  /**
+   * Pixel value for padding on the right side.
+   */
+  right?: SizePx;
+  /**
+   * Enables the inspector mode and highlights the padding applied in green.
+   */
+  inspect?: boolean;
+};
 
 export const PixelPadding = (
-  props: Devvit.BlockComponentProps<PixelPaddingProps>,
+  props: Readonly<Devvit.BlockComponentProps<PixelPaddingProps>>,
 ): JSX.Element => {
   if (!Array.isArray(props.children) || !props.children.length) {
     return <>{props.children}</>;
@@ -85,37 +121,24 @@ export const PixelPadding = (
 
 type SizePx = `${number}px`;
 
-type StackElement = {
+type StackElement = BlockElement & {
   type: string;
 
   props: Devvit.Blocks.StackProps | undefined;
   children: JSX.Children | undefined;
 };
 
-type PixelPaddingProps = {
-  all?: SizePx;
-
-  x?: SizePx;
-  y?: SizePx;
-
-  top?: SizePx;
-  bottom?: SizePx;
-  left?: SizePx;
-  right?: SizePx;
-
-  inspect?: boolean;
-};
 const defaultPadding = "0px";
 
 function getSpreadableChildren(
-  children: JSX.Children | undefined,
+  children: Readonly<JSX.Children | undefined>,
 ): JSX.Element[] {
   return children ? (Array.isArray(children) ? children : [children]) : [];
 }
 
 function copyProps(
-  source: StackElement,
-  propList: Array<keyof Devvit.Blocks.StackProps>,
+  source: Readonly<StackElement>,
+  propList: ReadonlyArray<keyof Devvit.Blocks.StackProps>,
 ): Devvit.Blocks.StackProps {
   return propList.reduce((acc, current) => {
     return {
