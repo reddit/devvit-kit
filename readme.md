@@ -35,7 +35,7 @@ Devvit.addCustomPostType({
 ```
 
 | Component Name    | Description                                                                                                       | Links                                                 |
-| ----------------- |-------------------------------------------------------------------------------------------------------------------| ----------------------------------------------------- |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
 | Columns           | A component that provides a simple column layout and optionally allows you to specify gap sizing between elements | [Usage Instructions](./src/columns/readme.md)         |
 | Item pagination   | A helper that enables pagination of data including UI elements for navigating through the elements                | [Usage Instructions](./src/item-pagination/readme.md) |
 | PixelPadding      | A component that lets you set padding from any side using pixel values.                                           | [Usage Instructions](./src/pixel-padding/readme.md)   |
