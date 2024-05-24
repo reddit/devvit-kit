@@ -1,4 +1,3 @@
-import { beforeEach, describe, expect } from "vitest";
 import { usePagination } from "./index.js";
 
 describe("usePagination", () => {

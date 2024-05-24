@@ -1,5 +1,4 @@
 import { splitItems, splitItemsColumnFill, splitItemsRow } from "./utils.js";
-import { describe, expect } from "vitest";
 
 describe("splitItems", () => {
   describe("column-fill", () => {
