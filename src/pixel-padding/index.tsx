@@ -112,7 +112,6 @@ export const PixelPadding = (
         <vstack height={paddingTop} {...debugColor} />
         {innerStack}
         <vstack height={paddingBottom} {...debugColor} />
-        <vstack />
       </vstack>
       <hstack width={paddingRight} {...debugColor} />
     </hstack>

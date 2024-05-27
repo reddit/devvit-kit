@@ -140,10 +140,14 @@ describe("Better padding", () => {
         children: [hstackWithProps],
       }) as BlockElement;
 
+      expect(result.children.length).toBe(3);
+
       const leftSpacer = result.children[0] as BlockElement;
       const rightSpacer = result.children[2] as BlockElement;
 
       const innerBlock = result.children[1] as BlockElement;
+
+      expect(innerBlock.children.length).toBe(3);
 
       const topSpacer = innerBlock.children[0] as BlockElement;
       const bottomSpacer = innerBlock.children[2] as BlockElement;
