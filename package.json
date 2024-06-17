@@ -31,8 +31,8 @@
     "prepublishOnly": "! git symbolic-ref --quiet HEAD || git push --follow-tags origin \"$(git branch --show-current)\"",
     "version": "npm run test && npm run build"
   },
-  "dependencies": {
-    "@devvit/public-api": "0.10.20"
+  "peerDependencies": {
+    "@devvit/public-api": ">=0.10.20"
   },
   "devDependencies": {
     "@benasher44/eslint-plugin-implicit-dependencies": "^1.1.3",
