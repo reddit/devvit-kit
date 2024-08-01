@@ -1,12 +1,13 @@
 # Devvit Watermark
 
-A watermark component that helps to distinguish your app as one that is built on Developer Platform. 
+A watermark component that helps to distinguish your app as one that is built on Developer Platform.
 
 <img src="https://i.redd.it/cdnom5lo41gd1.png" alt="Usage example: 'Built by kebakark. Details'">
 
 Served in two options
- - `DevvitWatermarkWrapper` - appends the watermark to the container it is wrapped around. Reduces the space available in the container, but does not overlap with the content. 
- - `DevvitWatermarkOverlay` - places the watermark over the container it is wrapped around. Does not reduce the space available in the container, but overlaps with the content.
+
+- `DevvitWatermarkWrapper` - appends the watermark to the container it is wrapped around. Reduces the space available in the container, but does not overlap with the content.
+- `DevvitWatermarkOverlay` - places the watermark over the container it is wrapped around. Does not reduce the space available in the container, but overlaps with the content.
 
 ## How to use
 
