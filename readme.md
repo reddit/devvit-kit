@@ -1,19 +1,18 @@
-# Devvit-kit
+# Devvit Kit
 
-Devvit Kit is a helper library that makes it easier to build [Devvit apps](https://developers.reddit.com),
-or apps on Reddit’s developer platform.
-Kit includes both UI components and general backend patterns that simplifies common tasks and enables developers to
+Devvit Kit is a helper library that makes it easier to build [Devvit apps](https://developers.reddit.com)
+and apps on Reddit’s Developer Platform. Devvit Kit includes both UI components and general backend patterns that simplify common tasks and enable developers to
 build apps faster.
 
 ## Installation
 
-To use Kit, navigate to your devvit project in your terminal and install the package:
+To use Devvit Kit, navigate to your Devvit project in your terminal and install the package:
 
 `npm install @devvit/kit`
 
 ## Usage
 
-Once you have Kit installed, you can import the helper you’re trying to use and then use it in applicable pieces of
+Once you have Devvit Kit installed, you can import the helper you’re trying to use and then use it in applicable pieces of
 code. This is an example using the Columns helper.
 
 ```typescript jsx
@@ -36,11 +35,11 @@ Devvit.addCustomPostType({
 
 | Component Name    | Description                                                                                                       | Links                                                  |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| Columns           | A component that provides a simple column layout and optionally allows you to specify gap sizing between elements | [Usage Instructions](./src/columns/readme.md)          |
-| Item pagination   | A helper that enables pagination of data including UI elements for navigating through the elements                | [Usage Instructions](./src/item-pagination/readme.md)  |
+| Columns           | A component that provides a simple column layout and optionally allows you to specify gap sizing between elements. | [Usage Instructions](./src/columns/readme.md)          |
+| Item pagination   | A helper that enables pagination of data, including UI elements for navigating through the elements.                | [Usage Instructions](./src/item-pagination/readme.md)  |
 | PixelPadding      | A component that lets you set padding from any side using pixel values.                                           | [Usage Instructions](./src/pixel-padding/readme.md)    |
-| Developer toolbar | Adds a toolbar of actions only visible to developers.                                                             | [Usage Instructions](./src/dev-toolbar/readme.md)      |
-| Watermark         | Adds a Developer Platform watermark.                                                                              | [Usage Instructions](./src/devvit-watermark/readme.md) |
+| Developer toolbar | A toolbar of actions only visible to developers.                                                             | [Usage Instructions](./src/dev-toolbar/readme.md)      |
+| Watermark         | A Developer Platform watermark that's added to your app.                                                                              | [Usage Instructions](./src/devvit-watermark/readme.md) |
 
 ## Contributing to the devvit-kit public repo
 
@@ -49,9 +48,9 @@ There's a [public issue board](https://github.com/reddit/devvit-kit/issues) that
 All feedback is welcome!
 
 If you'd like to contribute to this repo as developer, you can find detailed instructions
-in [contributing.md](contributing.md)
+in the [contributing](contributing.md) file.
 
-## Contributor License Agreement
+## Contributor license agreement
 
 The first time you submit a pull request (PR) to a Reddit
 project, [you should complete our CLA](https://docs.google.com/forms/d/e/1FAIpQLScG6Bf3yqS05yWV0pbh5Q60AsaXP2mw35_i7ZA19_7jWNJKsg/viewform).
