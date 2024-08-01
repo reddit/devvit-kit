@@ -1,17 +1,17 @@
-# Devvit Watermark
+# Devvit watermark
 
-A watermark component that helps to distinguish your app as one that is built on Developer Platform.
+A watermark indicates that your app was built on Developer Platform.
 
 <img src="https://i.redd.it/cdnom5lo41gd1.png" alt="Usage example: 'Built by kebakark. Details'">
 
-Served in two options
+You can add a watermark to your app in one of two ways:
 
-- `DevvitWatermarkWrapper` - appends the watermark to the container it is wrapped around. Reduces the space available in the container, but does not overlap with the content.
-- `DevvitWatermarkOverlay` - places the watermark over the container it is wrapped around. Does not reduce the space available in the container, but overlaps with the content.
+- `DevvitWatermarkWrapper` appends the watermark to the container it is wrapped around. This reduces the space available in the container, but the watermark does not overlap with the content.
+- `DevvitWatermarkOverlay` places the watermark over the container it is wrapped around. This does not reduce the space available in the container, and the watermark overlaps with the content.
 
 ## How to use
 
-### Step 1: Install the Devvit kit
+### Step 1: Install Devvit Kit
 
 Open your project folder in the terminal app.
 
@@ -21,7 +21,7 @@ Run `npm install @devvit/kit --save`
 
 Add the line `import { DevvitWatermarkWrapper } from '@devvit/kit';` in the beginning of the component file.
 
-### Step 3: Use Watermark in your app
+### Step 3: Use the watermark in your app
 
 Wrap the `DevToolbarWrapper` around the top element of your root component, like this:
 
