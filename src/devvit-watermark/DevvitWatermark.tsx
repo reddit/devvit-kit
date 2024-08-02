@@ -1,15 +1,14 @@
 import { Devvit } from "@devvit/public-api";
 
 /**
- * appName - the app name that is specified in devvit.yaml.
- * developer - username of the app creator
+ * @field appName - the app name that is specified in devvit.yaml.
+ *
+ * @field developer - username of the app creator.
  */
 export type WatermarkProps = { appName: string; developer: string };
 
 /**
  * A component that appends the watermark to the container it is wrapped around
- * @param appName - the app name that is specified in devvit.yaml
- * @param developer - username of the app creator
  */
 export const DevvitWatermarkWrapper: Devvit.BlockComponent<WatermarkProps> = (
   props,
@@ -26,8 +25,6 @@ export const DevvitWatermarkWrapper: Devvit.BlockComponent<WatermarkProps> = (
 
 /**
  * A component that places the watermark over the container it is wrapped around
- * @param appName - the app name that is specified in devvit.yaml
- * @param developer - username of the app creator
  */
 export const DevvitWatermarkOverlay: Devvit.BlockComponent<WatermarkProps> = (
   props,
