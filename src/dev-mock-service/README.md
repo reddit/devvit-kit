@@ -1,45 +1,16 @@
-## DevvTools
+## Dev Mock Service
 
-Developer tools for your Devvit app.
+Dev Mock Service Worker is an API mocking library that allows you to specify 
+custom responses for any API calls inside your app.
 
 ### Capabilities
 
-- Actions toolbar
 - Mock API requests
 - Dev/Prod switch
 
 ### Installation
 
-Add the line `import { DevvTools } from '@devvit/kit';` in the beginning of your root component.
-
-### Actions toolbar
-
-Create the wrapper component with `DevvTools.toolbar`.
-
-```typescript jsx
-const ActionToolbarWrapper = DevvTools.toolbar({
-  context,
-  mode: DevMockMode.Dev, // change that to DevMockMode.Prod when app is ready be published
-});
-```
-
-Create actions for your app with `devAction`.
-
-```typescript jsx
-const developerActions = [
-  devAction("Reset data", async () => {
-    await context.redis.set("gameData", "");
-  }),
-];
-```
-
-Wrap your root element with `ActionToolbarWrapper`.
-
-```typescript jsx
-<ActionToolbarWrapper actions={developerActions}>
-  ... // your root app element
-</ActionToolbarWrapper>
-```
+Add the line `import { DevMockMode, DevMock } from '@devvit/kit';` in the beginning of your root component.
 
 ### API mocks
 
@@ -51,23 +22,23 @@ Redis, RedditAPI, or HTTP request.
 
 #### Setup
 
-Create devv versions for the API you're using.
+Create devv versions of the API clients you want to mock.
 
 ```typescript
-const { devvRedis, devvRedditApi, devvFetch } = DevvTools.api({
+const { devvRedis, devvRedditApi, devvFetch } = DevMock.createService({
   context,
   mode: DevMockMode.Dev,
   handlers: [
-    redisHandler.get("mocked_key", () => "Value from mocks!"),
-    httpHandler.get("https://example.com", () =>
-      httpResponse.ok({ fetched: "mock" }),
-    ),
-    redditApiHandler.getSubredditById((id: string) => ({ name: `mock_${id}` })),
+      DevMock.redis.get("mocked_key", () => "Value from mocks!"), 
+      DevMock.fetch.get("https://example.com", () =>
+          DevMock.httpResponse.ok({ fetched: "mock" }),
+      ),
+      DevMock.reddit.getSubredditById((id: string) => ({ name: `mock_${id}` })),
   ],
 });
 ```
 
-Use devv versions in your app.
+Use devv versions of API clients in your app.
 
 ```typescript
 const redisValue = await devvRedis.get("mocked_key"); // "Value from mocks!"
