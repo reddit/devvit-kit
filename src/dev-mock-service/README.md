@@ -1,6 +1,6 @@
 ## Dev Mock Service
 
-Dev Mock Service Worker is an API mocking library that allows you to specify 
+Dev Mock Service Worker is an API mocking library that allows you to specify
 custom responses for any API calls inside your app.
 
 ### Capabilities
@@ -29,11 +29,11 @@ const { devvRedis, devvRedditApi, devvFetch } = DevMock.createService({
   context,
   mode: DevMockMode.Dev,
   handlers: [
-      DevMock.redis.get("mocked_key", () => "Value from mocks!"), 
-      DevMock.fetch.get("https://example.com", () =>
-          DevMock.httpResponse.ok({ fetched: "mock" }),
-      ),
-      DevMock.reddit.getSubredditById((id: string) => ({ name: `mock_${id}` })),
+    DevMock.redis.get("mocked_key", () => "Value from mocks!"),
+    DevMock.fetch.get("https://example.com", () =>
+      DevMock.httpResponse.ok({ fetched: "mock" }),
+    ),
+    DevMock.reddit.getSubredditById((id: string) => ({ name: `mock_${id}` })),
   ],
 });
 ```

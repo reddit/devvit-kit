@@ -46,22 +46,20 @@ class DevvRedditApi implements RedditApiInterface {
   getSubredditById: RedditAPIClient["getSubredditById"] = (...args) => {
     return this.#defaultHandler("getSubredditById")(...args);
   };
-  getSubredditByName: RedditAPIClient["getSubredditByName"] = (
-    ...args
-  ) => {
+  getSubredditByName: RedditAPIClient["getSubredditByName"] = (...args) => {
     return this.#defaultHandler("getSubredditByName")(...args);
   };
-  addSubredditRemovalReason: RedditAPIClient["addSubredditRemovalReason"] =
-    (...args) => {
-      return this.#defaultHandler("addSubredditRemovalReason")(...args);
-    };
-  getSubredditRemovalReasons: RedditAPIClient["getSubredditRemovalReasons"] =
-    (...args) => {
-      return this.#defaultHandler("getSubredditRemovalReasons")(...args);
-    };
-  getCurrentSubreddit: RedditAPIClient["getCurrentSubreddit"] = (
+  addSubredditRemovalReason: RedditAPIClient["addSubredditRemovalReason"] = (
     ...args
   ) => {
+    return this.#defaultHandler("addSubredditRemovalReason")(...args);
+  };
+  getSubredditRemovalReasons: RedditAPIClient["getSubredditRemovalReasons"] = (
+    ...args
+  ) => {
+    return this.#defaultHandler("getSubredditRemovalReasons")(...args);
+  };
+  getCurrentSubreddit: RedditAPIClient["getCurrentSubreddit"] = (...args) => {
     return this.#defaultHandler("getCurrentSubreddit")(...args);
   };
   getPostById: RedditAPIClient["getPostById"] = (...args) => {
@@ -76,21 +74,18 @@ class DevvRedditApi implements RedditApiInterface {
   getUserById: RedditAPIClient["getUserById"] = (...args) => {
     return this.#defaultHandler("getUserById")(...args);
   };
-  getCollectionById: RedditAPIClient["getCollectionById"] = (
-    ...args
-  ) => {
+  getCollectionById: RedditAPIClient["getCollectionById"] = (...args) => {
     return this.#defaultHandler("getCollectionById")(...args);
   };
   createCollection: RedditAPIClient["createCollection"] = (...args) => {
     return this.#defaultHandler("createCollection")(...args);
   };
-  getCollectionsForSubreddit: RedditAPIClient["getCollectionsForSubreddit"] =
-    (...args) => {
-      return this.#defaultHandler("getCollectionsForSubreddit")(...args);
-    };
-  getUserByUsername: RedditAPIClient["getUserByUsername"] = (
+  getCollectionsForSubreddit: RedditAPIClient["getCollectionsForSubreddit"] = (
     ...args
   ) => {
+    return this.#defaultHandler("getCollectionsForSubreddit")(...args);
+  };
+  getUserByUsername: RedditAPIClient["getUserByUsername"] = (...args) => {
     return this.#defaultHandler("getUserByUsername")(...args);
   };
   getCurrentUser: RedditAPIClient["getCurrentUser"] = (...args) => {
@@ -108,9 +103,7 @@ class DevvRedditApi implements RedditApiInterface {
   getComments: RedditAPIClient["getComments"] = (...args) => {
     return this.#defaultHandler("getComments")(...args);
   };
-  getCommentsByUser: RedditAPIClient["getCommentsByUser"] = (
-    ...args
-  ) => {
+  getCommentsByUser: RedditAPIClient["getCommentsByUser"] = (...args) => {
     return this.#defaultHandler("getCommentsByUser")(...args);
   };
   submitComment: RedditAPIClient["submitComment"] = (...args) => {
@@ -136,10 +129,11 @@ class DevvRedditApi implements RedditApiInterface {
   getPostsByUser: RedditAPIClient["getPostsByUser"] = (...args) => {
     return this.#defaultHandler("getPostsByUser")(...args);
   };
-  getCommentsAndPostsByUser: RedditAPIClient["getCommentsAndPostsByUser"] =
-    (...args) => {
-      return this.#defaultHandler("getCommentsAndPostsByUser")(...args);
-    };
+  getCommentsAndPostsByUser: RedditAPIClient["getCommentsAndPostsByUser"] = (
+    ...args
+  ) => {
+    return this.#defaultHandler("getCommentsAndPostsByUser")(...args);
+  };
   getModerationLog: RedditAPIClient["getModerationLog"] = (...args) => {
     return this.#defaultHandler("getModerationLog")(...args);
   };
@@ -152,14 +146,10 @@ class DevvRedditApi implements RedditApiInterface {
   removeUser: RedditAPIClient["removeUser"] = (...args) => {
     return this.#defaultHandler("removeUser")(...args);
   };
-  getWikiContributors: RedditAPIClient["getWikiContributors"] = (
-    ...args
-  ) => {
+  getWikiContributors: RedditAPIClient["getWikiContributors"] = (...args) => {
     return this.#defaultHandler("getWikiContributors")(...args);
   };
-  addWikiContributor: RedditAPIClient["addWikiContributor"] = (
-    ...args
-  ) => {
+  addWikiContributor: RedditAPIClient["addWikiContributor"] = (...args) => {
     return this.#defaultHandler("addWikiContributor")(...args);
   };
   removeWikiContributor: RedditAPIClient["removeWikiContributor"] = (
@@ -176,18 +166,15 @@ class DevvRedditApi implements RedditApiInterface {
   unbanUser: RedditAPIClient["unbanUser"] = (...args) => {
     return this.#defaultHandler("unbanUser")(...args);
   };
-  getBannedWikiContributors: RedditAPIClient["getBannedWikiContributors"] =
-    (...args) => {
-      return this.#defaultHandler("getBannedWikiContributors")(...args);
-    };
-  banWikiContributor: RedditAPIClient["banWikiContributor"] = (
+  getBannedWikiContributors: RedditAPIClient["getBannedWikiContributors"] = (
     ...args
   ) => {
+    return this.#defaultHandler("getBannedWikiContributors")(...args);
+  };
+  banWikiContributor: RedditAPIClient["banWikiContributor"] = (...args) => {
     return this.#defaultHandler("banWikiContributor")(...args);
   };
-  unbanWikiContributor: RedditAPIClient["unbanWikiContributor"] = (
-    ...args
-  ) => {
+  unbanWikiContributor: RedditAPIClient["unbanWikiContributor"] = (...args) => {
     return this.#defaultHandler("unbanWikiContributor")(...args);
   };
   getModerators: RedditAPIClient["getModerators"] = (...args) => {
@@ -230,9 +217,7 @@ class DevvRedditApi implements RedditApiInterface {
   addRemovalNote: RedditAPIClient["addRemovalNote"] = (...args) => {
     return this.#defaultHandler("addRemovalNote")(...args);
   };
-  sendPrivateMessage: RedditAPIClient["sendPrivateMessage"] = (
-    ...args
-  ) => {
+  sendPrivateMessage: RedditAPIClient["sendPrivateMessage"] = (...args) => {
     return this.#defaultHandler("sendPrivateMessage")(...args);
   };
   sendPrivateMessageAsSubreddit: RedditAPIClient["sendPrivateMessageAsSubreddit"] =
@@ -265,14 +250,10 @@ class DevvRedditApi implements RedditApiInterface {
   ) => {
     return this.#defaultHandler("createUserFlairTemplate")(...args);
   };
-  editFlairTemplate: RedditAPIClient["editFlairTemplate"] = (
-    ...args
-  ) => {
+  editFlairTemplate: RedditAPIClient["editFlairTemplate"] = (...args) => {
     return this.#defaultHandler("editFlairTemplate")(...args);
   };
-  deleteFlairTemplate: RedditAPIClient["deleteFlairTemplate"] = (
-    ...args
-  ) => {
+  deleteFlairTemplate: RedditAPIClient["deleteFlairTemplate"] = (...args) => {
     return this.#defaultHandler("deleteFlairTemplate")(...args);
   };
   setUserFlair: RedditAPIClient["setUserFlair"] = (...args) => {
@@ -311,17 +292,13 @@ class DevvRedditApi implements RedditApiInterface {
   updateWikiPage: RedditAPIClient["updateWikiPage"] = (...args) => {
     return this.#defaultHandler("updateWikiPage")(...args);
   };
-  getWikiPageRevisions: RedditAPIClient["getWikiPageRevisions"] = (
-    ...args
-  ) => {
+  getWikiPageRevisions: RedditAPIClient["getWikiPageRevisions"] = (...args) => {
     return this.#defaultHandler("getWikiPageRevisions")(...args);
   };
   revertWikiPage: RedditAPIClient["revertWikiPage"] = (...args) => {
     return this.#defaultHandler("revertWikiPage")(...args);
   };
-  getWikiPageSettings: RedditAPIClient["getWikiPageSettings"] = (
-    ...args
-  ) => {
+  getWikiPageSettings: RedditAPIClient["getWikiPageSettings"] = (...args) => {
     return this.#defaultHandler("getWikiPageSettings")(...args);
   };
   updateWikiPageSettings: RedditAPIClient["updateWikiPageSettings"] = (
@@ -329,15 +306,14 @@ class DevvRedditApi implements RedditApiInterface {
   ) => {
     return this.#defaultHandler("updateWikiPageSettings")(...args);
   };
-  addEditorToWikiPage: RedditAPIClient["addEditorToWikiPage"] = (
-    ...args
-  ) => {
+  addEditorToWikiPage: RedditAPIClient["addEditorToWikiPage"] = (...args) => {
     return this.#defaultHandler("addEditorToWikiPage")(...args);
   };
-  removeEditorFromWikiPage: RedditAPIClient["removeEditorFromWikiPage"] =
-    (...args) => {
-      return this.#defaultHandler("removeEditorFromWikiPage")(...args);
-    };
+  removeEditorFromWikiPage: RedditAPIClient["removeEditorFromWikiPage"] = (
+    ...args
+  ) => {
+    return this.#defaultHandler("removeEditorFromWikiPage")(...args);
+  };
   getMessages: RedditAPIClient["getMessages"] = (...args) => {
     return this.#defaultHandler("getMessages")(...args);
   };
@@ -369,9 +345,7 @@ class DevvRedditApi implements RedditApiInterface {
     // @ts-expect-error
     return this.#defaultHandler("getEdited")(...args);
   };
-  getVaultByAddress: RedditAPIClient["getVaultByAddress"] = (
-    ...args
-  ) => {
+  getVaultByAddress: RedditAPIClient["getVaultByAddress"] = (...args) => {
     return this.#defaultHandler("getVaultByAddress")(...args);
   };
   getVaultByUserId: RedditAPIClient["getVaultByUserId"] = (...args) => {
