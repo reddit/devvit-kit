@@ -25,14 +25,14 @@ export const createDevvFetch = (
   };
 };
 
-type HttpHandlerFactory = (
+type HttpOverrideFactory = (
   url: string,
   handler: (requestInit: RequestInit) => HandlerResponse,
 ) => HttpOverride;
 
 const genericHttpHandler = (
   method: HttpOverride["method"],
-): HttpHandlerFactory => {
+): HttpOverrideFactory => {
   return (url, handler) => {
     return {
       url,

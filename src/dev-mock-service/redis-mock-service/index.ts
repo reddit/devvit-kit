@@ -68,7 +68,7 @@ const createOverrideFactory = (
           return overrides[i].handler(...rest);
         }
       }
-      // @ts-ignore
+      // @ts-expect-error
       return realRedis[method](key, ...rest);
     };
   };

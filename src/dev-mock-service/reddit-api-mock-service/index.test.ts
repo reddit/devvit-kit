@@ -45,7 +45,7 @@ describe("Reddit Api mock service", () => {
       ]);
       const result = await devvRedditApi.getSubredditById("test_subreddit");
       expect(realRedditApi.getSubredditById).not.toBeCalled();
-      expect(result).toEqual({ id: "test_subreddit" });
+      expect(result).toStrictEqual({ id: "test_subreddit" });
     });
 
     it("calls the original method if no handler is provided", async () => {
@@ -59,7 +59,7 @@ describe("Reddit Api mock service", () => {
       ]);
       const result = await devvRedditApi.getCurrentUser();
       expect(realRedditApi.getCurrentUser).toHaveBeenCalledOnce();
-      expect(result).toEqual({ name: "real_user" });
+      expect(result).toStrictEqual({ name: "real_user" });
     });
 
     it("has modMail method", async () => {
@@ -86,7 +86,7 @@ describe("Reddit Api mock service", () => {
         subreddit: "t5_123",
       });
       expect(realRedditApi.getSpam).not.toBeCalled();
-      expect(result).toEqual(mockListing);
+      expect(result).toStrictEqual(mockListing);
     });
 
     it("has all methods defined", async () => {
@@ -189,9 +189,9 @@ describe("Reddit Api mock service", () => {
             return expectedResult;
           }),
         ]);
-        // @ts-ignore
+        // @ts-expect-error
         const result = devvRedditApi[methodName]();
-        expect(result).toEqual(expectedResult);
+        expect(result).toStrictEqual(expectedResult);
       });
     });
   });

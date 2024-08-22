@@ -150,7 +150,7 @@ describe("redis mock service", () => {
         "non_mocked_key_2",
       ]);
 
-      expect(response).toEqual([
+      expect(response).toStrictEqual([
         "mock_response_1",
         "real_response_1",
         null,

@@ -67,7 +67,7 @@ describe("HTTP mock service", () => {
 
       expect(result.status).toBe(200);
       expect(result.ok).toBe(true);
-      expect(await result.json()).toEqual({ mock: "response" });
+      expect(await result.json()).toStrictEqual({ mock: "response" });
     });
 
     it("checks the method of the handler", async () => {
@@ -104,7 +104,7 @@ describe("HTTP mock service", () => {
         body: JSON.stringify({ content: "test" }),
       });
 
-      expect(await result.json()).toEqual({ mock: "weather" });
+      expect(await result.json()).toStrictEqual({ mock: "weather" });
     });
 
     it("handles POST mocks", async () => {
@@ -125,7 +125,7 @@ describe("HTTP mock service", () => {
       });
 
       expect(realFetch).not.toBeCalled();
-      expect(await result.json()).toEqual({ content: "test" });
+      expect(await result.json()).toStrictEqual({ content: "test" });
     });
 
     it("handles PUT mocks", async () => {
@@ -143,7 +143,7 @@ describe("HTTP mock service", () => {
       });
 
       expect(realFetch).not.toBeCalled();
-      expect(await result.json()).toEqual({ content: "test_put" });
+      expect(await result.json()).toStrictEqual({ content: "test_put" });
     });
 
     it("handles DELETE mocks", async () => {
@@ -161,7 +161,7 @@ describe("HTTP mock service", () => {
       });
 
       expect(realFetch).not.toBeCalled();
-      expect(await result.json()).toEqual({ content: "test_delete" });
+      expect(await result.json()).toStrictEqual({ content: "test_delete" });
     });
 
     it("handles OPTIONS mocks", async () => {
@@ -179,7 +179,7 @@ describe("HTTP mock service", () => {
       });
 
       expect(realFetch).not.toBeCalled();
-      expect(await result.json()).toEqual({ content: "test_options" });
+      expect(await result.json()).toStrictEqual({ content: "test_options" });
     });
 
     it("handles PATCH mocks", async () => {
@@ -197,7 +197,7 @@ describe("HTTP mock service", () => {
       });
 
       expect(realFetch).not.toBeCalled();
-      expect(await result.json()).toEqual({ content: "test_patch" });
+      expect(await result.json()).toStrictEqual({ content: "test_patch" });
     });
   });
 });

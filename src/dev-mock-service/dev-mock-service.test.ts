@@ -88,7 +88,7 @@ describe("dev mock service", () => {
         });
         const response = await devMockService.devvRedditApi.getCurrentUser();
         expect(mockContext.reddit.getCurrentUser).toHaveBeenCalledOnce();
-        expect(response).toEqual({ name: "real_user" });
+        expect(response).toStrictEqual({ name: "real_user" });
       });
 
       it("calls the mock handler if provided", async () => {
@@ -107,7 +107,7 @@ describe("dev mock service", () => {
         const response =
           await devMockService.devvRedditApi.getSubredditById("test");
         expect(mockContext.reddit.getSubredditById).not.toBeCalled();
-        expect(response).toEqual({ name: "mock_test" });
+        expect(response).toStrictEqual({ name: "mock_test" });
       });
 
       it("ignores mocks in prod mode", async () => {
@@ -126,7 +126,7 @@ describe("dev mock service", () => {
         const response =
           await devMockService.devvRedditApi.getSubredditById("test");
         expect(mockContext.reddit.getSubredditById).toBeCalled();
-        expect(response).toEqual({ name: "realSubreddit" });
+        expect(response).toStrictEqual({ name: "realSubreddit" });
       });
     });
 
@@ -165,7 +165,7 @@ describe("dev mock service", () => {
         );
         expect(mockFetch).toHaveBeenCalledOnce();
         expect(mockFetch).toBeCalledWith("https://example.com", {});
-        expect(await response.json()).toEqual({ real: "data" });
+        expect(await response.json()).toStrictEqual({ real: "data" });
       });
 
       it("uses handler if provided", async () => {
@@ -182,7 +182,7 @@ describe("dev mock service", () => {
           method: "GET",
         });
         expect(mockFetch).not.toBeCalled();
-        expect(await response.json()).toEqual({ mocked: "response" });
+        expect(await response.json()).toStrictEqual({ mocked: "response" });
       });
     });
   });
