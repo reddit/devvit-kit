@@ -67,6 +67,6 @@ export const httpResponse = {
     }) as Response,
 };
 
-export const isHttpApiHandler = (
+export const isHttpApiOverride = (
   handler: HandlerOverride,
 ): handler is HttpOverride => handler.__type === "HTTP";

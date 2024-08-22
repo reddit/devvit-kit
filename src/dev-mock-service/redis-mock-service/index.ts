@@ -220,6 +220,6 @@ export const redisHandler = {
   zRemRangeByScore: genericRedisHandler("zRemRangeByScore"),
 } as const;
 
-export const isRedisHandler = (
+export const isRedisOverride = (
   handler: HandlerOverride,
 ): handler is RedisOverride => handler.__type === "Redis";

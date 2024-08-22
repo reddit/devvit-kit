@@ -4,19 +4,19 @@ import type { HandlerOverride } from "./types/index.js";
 
 import {
   createDevvRedis,
-  isRedisHandler,
+  isRedisOverride,
   redisHandler,
 } from "./redis-mock-service/index.js";
 import {
   createDevvRedditApi,
-  isRedditApiHandler,
+  isRedditApiOverride,
   redditApiHandler,
 } from "./reddit-api-mock-service/index.js";
 import {
   createDevvFetch,
   httpHandler,
   httpResponse,
-  isHttpApiHandler,
+  isHttpApiOverride,
 } from "./http-mock-service/index.js";
 
 export enum DevMockMode {
@@ -42,16 +42,16 @@ const createDevMockService = (config: {
       devvFetch: fetch,
     };
   }
-  const redisHandlers = config.handlers?.filter(isRedisHandler) || [];
+  const redisHandlers = config.handlers?.filter(isRedisOverride) || [];
   const devvRedis = createDevvRedis(config.context.redis, redisHandlers);
 
-  const redditApiHandlers = config.handlers?.filter(isRedditApiHandler) || [];
+  const redditApiHandlers = config.handlers?.filter(isRedditApiOverride) || [];
   const devvRedditApi = createDevvRedditApi(
     config.context.reddit,
     redditApiHandlers,
   );
 
-  const httpApiHandlers = config.handlers?.filter(isHttpApiHandler) || [];
+  const httpApiHandlers = config.handlers?.filter(isHttpApiOverride) || [];
   const devvFetch = createDevvFetch(fetch, httpApiHandlers);
 
   return { devvRedis, devvRedditApi, devvFetch };

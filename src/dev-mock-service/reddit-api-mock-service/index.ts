@@ -475,6 +475,6 @@ export const redditApiHandler: Record<keyof RedditAPIClient, Function> = {
   },
 } as const;
 
-export const isRedditApiHandler = (
+export const isRedditApiOverride = (
   handler: HandlerOverride,
 ): handler is RedditApiOverride => handler.__type === "RedditApi";
