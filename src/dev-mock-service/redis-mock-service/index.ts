@@ -6,7 +6,7 @@ import type {
   RedisSyncResponse,
   Unpacked,
 } from "./types.js";
-import type { HandlerOverride } from "../types/internal.js";
+import type { HandlerOverride } from "../types/index.js";
 
 export const createDevvRedis = (
   realRedis: RedisClient,
