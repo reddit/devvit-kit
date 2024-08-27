@@ -1,6 +1,6 @@
 ## Dev Mock Service
 
-Dev Mock Service Worker is an API mocking library that allows you to specify
+Dev Mock Service is an API mocking library that allows you to specify
 custom responses for any API calls inside your app.
 
 ### Capabilities
