@@ -9,7 +9,7 @@ import type {
 import type { HandlerOverride } from "../types/index.js";
 import type { ModMailService } from "@devvit/public-api";
 
-class DevvRedditApi implements RedditApiInterface {
+class devRedditApi implements RedditApiInterface {
   #overrides: OverridesMap;
   #realRedditApi: RedditAPIClient;
 
@@ -353,11 +353,11 @@ class DevvRedditApi implements RedditApiInterface {
   };
 }
 
-export const createDevvRedditApi = (
+export const createdevRedditApi = (
   realRedditApi: RedditAPIClient,
   overrides: RedditApiOverride[],
 ): RedditAPIClient => {
-  return new DevvRedditApi(
+  return new devRedditApi(
     realRedditApi,
     overrides,
   ) as unknown as RedditAPIClient;

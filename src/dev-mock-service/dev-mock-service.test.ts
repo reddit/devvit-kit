@@ -24,34 +24,34 @@ describe("dev mock service", () => {
 
   describe("init api", () => {
     describe("redis", () => {
-      it("returns devvRedis", () => {
+      it("returns devRedis", () => {
         const devMockService = DevMock.createService({
           context: mockContext,
           mode: DevMockMode.Prod,
         });
-        expect(devMockService.devvRedis).toBeDefined();
+        expect(devMockService.devRedis).toBeDefined();
       });
 
-      it("returns devvRedis that calls the original method if no handlers are provided", async () => {
+      it("returns devRedis that calls the original method if no handlers are provided", async () => {
         (mockContext.redis.get as Mock).mockResolvedValue("real redis");
         const devMockService = DevMock.createService({
           context: mockContext,
           mode: DevMockMode.Dev,
         });
-        const response = await devMockService.devvRedis.get("regular_key");
+        const response = await devMockService.devRedis.get("regular_key");
         expect(mockContext.redis.get).toBeCalledWith("regular_key");
         expect(mockContext.redis.get).toHaveBeenCalledOnce();
         expect(response).toBe("real redis");
       });
 
-      it("returns devvRedis that applies mock responses", async () => {
+      it("returns devRedis that applies mock responses", async () => {
         (mockContext.redis.get as Mock).mockResolvedValue("real redis");
         const devMockService = DevMock.createService({
           context: mockContext,
           mode: DevMockMode.Dev,
           handlers: [DevMock.redis.get("mocked_key", () => "mocked_response")],
         });
-        const response = await devMockService.devvRedis.get("mocked_key");
+        const response = await devMockService.devRedis.get("mocked_key");
         expect(mockContext.redis.get).not.toBeCalled();
         expect(response).toBe("mocked_response");
       });
@@ -63,19 +63,19 @@ describe("dev mock service", () => {
           mode: DevMockMode.Prod,
           handlers: [DevMock.redis.get("mocked_key", () => "mocked_response")],
         });
-        const response = await devMockService.devvRedis.get("mocked_key");
+        const response = await devMockService.devRedis.get("mocked_key");
         expect(mockContext.redis.get).toBeCalledWith("mocked_key");
         expect(mockContext.redis.get).toHaveBeenCalledOnce();
         expect(response).toBe("real redis");
       });
     });
     describe("redditApi", () => {
-      it("returns devvRedditApi", () => {
+      it("returns devRedditApi", () => {
         const devMockService = DevMock.createService({
           context: mockContext,
           mode: DevMockMode.Prod,
         });
-        expect(devMockService.devvRedditApi).toBeDefined();
+        expect(devMockService.devRedditApi).toBeDefined();
       });
 
       it("calls the original method if no handlers are provided", async () => {
@@ -86,7 +86,7 @@ describe("dev mock service", () => {
           context: mockContext,
           mode: DevMockMode.Dev,
         });
-        const response = await devMockService.devvRedditApi.getCurrentUser();
+        const response = await devMockService.devRedditApi.getCurrentUser();
         expect(mockContext.reddit.getCurrentUser).toHaveBeenCalledOnce();
         expect(response).toStrictEqual({ name: "real_user" });
       });
@@ -105,7 +105,7 @@ describe("dev mock service", () => {
           ],
         });
         const response =
-          await devMockService.devvRedditApi.getSubredditById("test");
+          await devMockService.devRedditApi.getSubredditById("test");
         expect(mockContext.reddit.getSubredditById).not.toBeCalled();
         expect(response).toStrictEqual({ name: "mock_test" });
       });
@@ -124,7 +124,7 @@ describe("dev mock service", () => {
           ],
         });
         const response =
-          await devMockService.devvRedditApi.getSubredditById("test");
+          await devMockService.devRedditApi.getSubredditById("test");
         expect(mockContext.reddit.getSubredditById).toBeCalled();
         expect(response).toStrictEqual({ name: "realSubreddit" });
       });
@@ -143,12 +143,12 @@ describe("dev mock service", () => {
         global.fetch = originalFetch;
       });
 
-      it("returns devvFetch", () => {
+      it("returns devFetch", () => {
         const devMockService = DevMock.createService({
           context: mockContext,
           mode: DevMockMode.Prod,
         });
-        expect(devMockService.devvFetch).toBeDefined();
+        expect(devMockService.devFetch).toBeDefined();
       });
 
       it("calls the original method if no handlers are provided", async () => {
@@ -159,7 +159,7 @@ describe("dev mock service", () => {
           context: mockContext,
           mode: DevMockMode.Dev,
         });
-        const response = await devMockService.devvFetch(
+        const response = await devMockService.devFetch(
           "https://example.com",
           {},
         );
@@ -178,7 +178,7 @@ describe("dev mock service", () => {
             }),
           ],
         });
-        const response = await devMockService.devvFetch("https://example.com", {
+        const response = await devMockService.devFetch("https://example.com", {
           method: "GET",
         });
         expect(mockFetch).not.toBeCalled();

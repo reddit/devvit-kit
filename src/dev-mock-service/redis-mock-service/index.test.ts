@@ -1,6 +1,6 @@
 import type { RedisClient } from "@devvit/public-api";
 import type { Mock } from "vitest";
-import { createDevvRedis, redisHandler } from "./index.js";
+import { createdevRedis, redisHandler } from "./index.js";
 
 describe("redis mock service", () => {
   const nativeRedis = {
@@ -21,9 +21,9 @@ describe("redis mock service", () => {
 
   describe("when no handlers provided", () => {
     it("uses vanilla redis", async () => {
-      const devvRedis = createDevvRedis(nativeRedis, []);
+      const devRedis = createdevRedis(nativeRedis, []);
       (nativeRedis.get as Mock).mockResolvedValue("real value");
-      const response = await devvRedis.get("key");
+      const response = await devRedis.get("key");
       expect(nativeRedis.get).toHaveBeenCalledOnce();
       expect(response).toBe("real value");
     });
@@ -31,44 +31,44 @@ describe("redis mock service", () => {
 
   describe("with handlers provided", () => {
     it("returns value from handler for overriden method and key", async () => {
-      const devvRedis = createDevvRedis(nativeRedis, [
+      const devRedis = createdevRedis(nativeRedis, [
         redisHandler.get("mocked_key", () => "mocked response"),
       ]);
       (nativeRedis.get as Mock).mockResolvedValue("real value");
-      const response = await devvRedis.get("mocked_key");
+      const response = await devRedis.get("mocked_key");
       expect(nativeRedis.get).not.toBeCalled();
       expect(response).toBe("mocked response");
     });
 
     it("returns real value for overriden method if key does not match", async () => {
-      const devvRedis = createDevvRedis(nativeRedis, [
+      const devRedis = createdevRedis(nativeRedis, [
         redisHandler.get("mocked_key", () => "mocked response"),
       ]);
       (nativeRedis.get as Mock).mockResolvedValue("real value");
-      const response = await devvRedis.get("another_key");
+      const response = await devRedis.get("another_key");
       expect(nativeRedis.get).toHaveBeenCalledOnce();
       expect(response).toBe("real value");
     });
 
     it("uses appropriate handler based on the key", async () => {
-      const devvRedis = createDevvRedis(nativeRedis, [
+      const devRedis = createdevRedis(nativeRedis, [
         redisHandler.get("mocked_key_1", () => "mock 1"),
         redisHandler.get("mocked_key_2", () => "mock 2"),
       ]);
       (nativeRedis.get as Mock).mockResolvedValue("real value");
-      const response1 = await devvRedis.get("mocked_key_1");
+      const response1 = await devRedis.get("mocked_key_1");
       expect(response1).toBe("mock 1");
-      const response2 = await devvRedis.get("mocked_key_2");
+      const response2 = await devRedis.get("mocked_key_2");
       expect(response2).toBe("mock 2");
     });
 
     it("passes args to a handler", async () => {
       const setHandler = vi.fn();
-      const devvRedis = createDevvRedis(nativeRedis, [
+      const devRedis = createdevRedis(nativeRedis, [
         redisHandler.set("mocked_key_1", setHandler),
       ]);
       (nativeRedis.set as Mock).mockResolvedValue("");
-      await devvRedis.set("mocked_key_1", "arg_value");
+      await devRedis.set("mocked_key_1", "arg_value");
       expect(nativeRedis.set).not.toBeCalled();
       expect(setHandler).toHaveBeenCalledOnce();
       expect(setHandler).toBeCalledWith("arg_value");
@@ -76,12 +76,12 @@ describe("redis mock service", () => {
 
     it("only overrides specified methods", async () => {
       const setHandler = vi.fn();
-      const devvRedis = createDevvRedis(nativeRedis, [
+      const devRedis = createdevRedis(nativeRedis, [
         redisHandler.set("mocked_key_1", setHandler),
       ]);
       (nativeRedis.set as Mock).mockResolvedValue("");
-      await devvRedis.set("mocked_key_1", "arg_value");
-      await devvRedis.get("mocked_key_1");
+      await devRedis.set("mocked_key_1", "arg_value");
+      await devRedis.get("mocked_key_1");
       expect(nativeRedis.set).not.toBeCalled();
       expect(nativeRedis.get).toBeCalled();
       expect(setHandler).toHaveBeenCalledOnce();
@@ -99,23 +99,23 @@ describe("redis mock service", () => {
       Object.setPrototypeOf(nativeRedisWithPrototype, extendedRedis);
       (nativeRedisWithPrototype.incrBy as Mock).mockResolvedValue(15);
 
-      const devvRedis = createDevvRedis(nativeRedisWithPrototype, [
+      const devRedis = createdevRedis(nativeRedisWithPrototype, [
         redisHandler.set("mocked_key_1", setHandler),
       ]);
 
-      await devvRedis.incrBy("mocked_key_1", 2);
+      await devRedis.incrBy("mocked_key_1", 2);
       expect(extendedRedis.incrBy).toHaveBeenCalledWith("mocked_key_1", 2);
     });
 
     it("accepts del overrides", async () => {
       const delHandler1 = vi.fn();
       const delHandler2 = vi.fn();
-      const devvRedis = createDevvRedis(nativeRedis, [
+      const devRedis = createdevRedis(nativeRedis, [
         redisHandler.del("mocked_key_1", delHandler1),
         redisHandler.del("mocked_key_2", delHandler2),
       ]);
       (nativeRedis.del as Mock).mockResolvedValue("");
-      const response = await devvRedis.del(
+      const response = await devRedis.del(
         "mocked_key_1",
         "mocked_key_2",
         "non_mocked_key",
@@ -129,7 +129,7 @@ describe("redis mock service", () => {
     });
 
     it("accepts mget overrides and applies the correct order of args", async () => {
-      const devvRedis = createDevvRedis(nativeRedis, [
+      const devRedis = createdevRedis(nativeRedis, [
         redisHandler.mget("mocked_key_1", () => "mock_response_1"),
         redisHandler.mget("mocked_key_2", () => null),
       ]);
@@ -137,7 +137,7 @@ describe("redis mock service", () => {
         "real_response_1",
         "real_response_2",
       ]);
-      const response = await devvRedis.mget([
+      const response = await devRedis.mget([
         "mocked_key_1",
         "non_mocked_key_1",
         "mocked_key_2",
@@ -161,11 +161,11 @@ describe("redis mock service", () => {
     it("accepts mset overrides", async () => {
       const msetHandler1 = vi.fn();
       const msetHandler2 = vi.fn();
-      const devvRedis = createDevvRedis(nativeRedis, [
+      const devRedis = createdevRedis(nativeRedis, [
         redisHandler.mset("mocked_key_1", msetHandler1),
         redisHandler.mset("mocked_key_2", msetHandler2),
       ]);
-      const response = await devvRedis.mset({
+      const response = await devRedis.mset({
         mocked_key_1: "1",
         non_mocked_key_1: "2",
         mocked_key_2: "3",

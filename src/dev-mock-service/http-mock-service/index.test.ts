@@ -1,4 +1,4 @@
-import { createDevvFetch, httpHandler, httpResponse } from "./index.js";
+import { createdevFetch, httpHandler, httpResponse } from "./index.js";
 
 describe("HTTP mock service", () => {
   const realFetch = vi.fn();
@@ -8,8 +8,8 @@ describe("HTTP mock service", () => {
   });
   describe("when no handlers provided", () => {
     it("uses vanilla fetch", async () => {
-      const devvFetch = createDevvFetch(realFetch, []);
-      await devvFetch("https://example.com", {
+      const devFetch = createdevFetch(realFetch, []);
+      await devFetch("https://example.com", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -30,10 +30,10 @@ describe("HTTP mock service", () => {
   describe("with handlers provided", () => {
     it("calls the handler instead of the original method", async () => {
       const testHandler = vi.fn();
-      const devvFetch = createDevvFetch(realFetch, [
+      const devFetch = createdevFetch(realFetch, [
         httpHandler.get("https://example.com", testHandler),
       ]);
-      await devvFetch("https://example.com", {
+      await devFetch("https://example.com", {
         method: "get",
         headers: {
           "Content-Type": "application/json",
@@ -52,12 +52,12 @@ describe("HTTP mock service", () => {
     });
 
     it("wraps the handler return value in Response object", async () => {
-      const devvFetch = createDevvFetch(realFetch, [
+      const devFetch = createdevFetch(realFetch, [
         httpHandler.get("https://example.com", () => {
           return httpResponse.ok({ mock: "response" });
         }),
       ]);
-      const result = await devvFetch("https://example.com", {
+      const result = await devFetch("https://example.com", {
         method: "get",
         headers: {
           "Content-Type": "application/json",
@@ -71,12 +71,12 @@ describe("HTTP mock service", () => {
     });
 
     it("checks the method of the handler", async () => {
-      const devvFetch = createDevvFetch(realFetch, [
+      const devFetch = createdevFetch(realFetch, [
         httpHandler.get("https://example.com", () => {
           return httpResponse.ok({ mock: "response" });
         }),
       ]);
-      await devvFetch("https://example.com", {
+      await devFetch("https://example.com", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -88,7 +88,7 @@ describe("HTTP mock service", () => {
     });
 
     it("checks the url of the handler", async () => {
-      const devvFetch = createDevvFetch(realFetch, [
+      const devFetch = createdevFetch(realFetch, [
         httpHandler.get("https://example.com", () => {
           return httpResponse.ok({ mock: "example" });
         }),
@@ -96,7 +96,7 @@ describe("HTTP mock service", () => {
           return httpResponse.ok({ mock: "weather" });
         }),
       ]);
-      const result = await devvFetch("https://weather.com", {
+      const result = await devFetch("https://weather.com", {
         method: "get",
         headers: {
           "Content-Type": "application/json",
@@ -108,7 +108,7 @@ describe("HTTP mock service", () => {
     });
 
     it("handles POST mocks", async () => {
-      const devvFetch = createDevvFetch(realFetch, [
+      const devFetch = createdevFetch(realFetch, [
         httpHandler.get("https://example.com", () => {
           return httpResponse.ok({ mock: "example" });
         }),
@@ -116,7 +116,7 @@ describe("HTTP mock service", () => {
           return httpResponse.ok(JSON.parse(request.body as string));
         }),
       ]);
-      const result = await devvFetch("https://example.com", {
+      const result = await devFetch("https://example.com", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -129,12 +129,12 @@ describe("HTTP mock service", () => {
     });
 
     it("handles PUT mocks", async () => {
-      const devvFetch = createDevvFetch(realFetch, [
+      const devFetch = createdevFetch(realFetch, [
         httpHandler.put("https://example.com", (request) => {
           return httpResponse.ok(JSON.parse(request.body as string));
         }),
       ]);
-      const result = await devvFetch("https://example.com", {
+      const result = await devFetch("https://example.com", {
         method: "put",
         headers: {
           "Content-Type": "application/json",
@@ -147,12 +147,12 @@ describe("HTTP mock service", () => {
     });
 
     it("handles DELETE mocks", async () => {
-      const devvFetch = createDevvFetch(realFetch, [
+      const devFetch = createdevFetch(realFetch, [
         httpHandler.delete("https://example.com", (request) => {
           return httpResponse.ok(JSON.parse(request.body as string));
         }),
       ]);
-      const result = await devvFetch("https://example.com", {
+      const result = await devFetch("https://example.com", {
         method: "delete",
         headers: {
           "Content-Type": "application/json",
@@ -165,12 +165,12 @@ describe("HTTP mock service", () => {
     });
 
     it("handles OPTIONS mocks", async () => {
-      const devvFetch = createDevvFetch(realFetch, [
+      const devFetch = createdevFetch(realFetch, [
         httpHandler.options("https://example.com", (request) => {
           return httpResponse.ok(JSON.parse(request.body as string));
         }),
       ]);
-      const result = await devvFetch("https://example.com", {
+      const result = await devFetch("https://example.com", {
         method: "options",
         headers: {
           "Content-Type": "application/json",
@@ -183,12 +183,12 @@ describe("HTTP mock service", () => {
     });
 
     it("handles PATCH mocks", async () => {
-      const devvFetch = createDevvFetch(realFetch, [
+      const devFetch = createdevFetch(realFetch, [
         httpHandler.patch("https://example.com", (request) => {
           return httpResponse.ok(JSON.parse(request.body as string));
         }),
       ]);
-      const result = await devvFetch("https://example.com", {
+      const result = await devFetch("https://example.com", {
         method: "patch",
         headers: {
           "Content-Type": "application/json",

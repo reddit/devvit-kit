@@ -22,10 +22,10 @@ Redis, RedditAPI, or HTTP request.
 
 #### Setup
 
-Create devv versions of the API clients you want to mock.
+Create dev versions of the API clients you want to mock.
 
 ```typescript
-const { devvRedis, devvRedditApi, devvFetch } = DevMock.createService({
+const { devRedis, devRedditApi, devFetch } = DevMock.createService({
   context,
   mode: DevMockMode.Dev,
   handlers: [
@@ -38,10 +38,10 @@ const { devvRedis, devvRedditApi, devvFetch } = DevMock.createService({
 });
 ```
 
-Use devv versions of API clients in your app.
+Use dev versions of API clients in your app.
 
 ```typescript
-const redisValue = await devvRedis.get("mocked_key"); // "Value from mocks!"
-const fetchedValue = await(await devvFetch("https://example.com")).json(); // {fetched: "mock"}
-const redditApiValue = (await devvRedditApi.getSubredditById("t5_123")).name; // "mock_t5_123"
+const redisValue = await devRedis.get("mocked_key"); // "Value from mocks!"
+const fetchedValue = await(await devFetch("https://example.com")).json(); // {fetched: "mock"}
+const redditApiValue = (await devRedditApi.getSubredditById("t5_123")).name; // "mock_t5_123"
 ```

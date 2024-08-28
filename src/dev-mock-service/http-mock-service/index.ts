@@ -2,7 +2,7 @@ import type { HttpOverride } from "./types.js";
 import type { HandlerOverride } from "../types/index.js";
 import type { JSONValue } from "@devvit/public-api/public-api.js";
 
-export const createDevvFetch = (
+export const createdevFetch = (
   realFetch: typeof fetch,
   overrides: HttpOverride[],
 ): typeof fetch => {

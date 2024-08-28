@@ -8,7 +8,7 @@ import type {
 } from "./types.js";
 import type { HandlerOverride } from "../types/index.js";
 
-export const createDevvRedis = (
+export const createdevRedis = (
   realRedis: RedisClient,
   overrides: RedisOverride[],
 ): RedisClient => {

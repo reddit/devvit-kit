@@ -3,17 +3,17 @@ import type { Devvit } from "@devvit/public-api";
 import type { HandlerOverride } from "./types/index.js";
 
 import {
-  createDevvRedis,
+  createdevRedis,
   isRedisOverride,
   redisHandler,
 } from "./redis-mock-service/index.js";
 import {
-  createDevvRedditApi,
+  createdevRedditApi,
   isRedditApiOverride,
   redditApiHandler,
 } from "./reddit-api-mock-service/index.js";
 import {
-  createDevvFetch,
+  createdevFetch,
   httpHandler,
   httpResponse,
   isHttpApiOverride,
@@ -25,9 +25,9 @@ export enum DevMockMode {
 }
 
 export type DevMockService = {
-  devvRedis: RedisClient;
-  devvRedditApi: RedditAPIClient;
-  devvFetch: typeof fetch;
+  devRedis: RedisClient;
+  devRedditApi: RedditAPIClient;
+  devFetch: typeof fetch;
 };
 
 const createDevMockService = (config: {
@@ -37,24 +37,24 @@ const createDevMockService = (config: {
 }): DevMockService => {
   if (config.mode === DevMockMode.Prod) {
     return {
-      devvRedis: config.context.redis,
-      devvRedditApi: config.context.reddit,
-      devvFetch: fetch,
+      devRedis: config.context.redis,
+      devRedditApi: config.context.reddit,
+      devFetch: fetch,
     };
   }
   const redisHandlers = config.handlers?.filter(isRedisOverride) || [];
-  const devvRedis = createDevvRedis(config.context.redis, redisHandlers);
+  const devRedis = createdevRedis(config.context.redis, redisHandlers);
 
   const redditApiHandlers = config.handlers?.filter(isRedditApiOverride) || [];
-  const devvRedditApi = createDevvRedditApi(
+  const devRedditApi = createdevRedditApi(
     config.context.reddit,
     redditApiHandlers,
   );
 
   const httpApiHandlers = config.handlers?.filter(isHttpApiOverride) || [];
-  const devvFetch = createDevvFetch(fetch, httpApiHandlers);
+  const devFetch = createdevFetch(fetch, httpApiHandlers);
 
-  return { devvRedis, devvRedditApi, devvFetch };
+  return { devRedis, devRedditApi, devFetch };
 };
 
 export const DevMock = {

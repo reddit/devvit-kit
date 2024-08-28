@@ -1,5 +1,5 @@
 import type { Listing, RedditAPIClient } from "@devvit/public-api";
-import { createDevvRedditApi, redditApiHandler } from "./index.js";
+import { createdevRedditApi, redditApiHandler } from "./index.js";
 import type { Mock } from "vitest";
 import type { Subreddit } from "@devvit/public-api";
 import type { ModMailService } from "@devvit/public-api";
@@ -20,30 +20,30 @@ describe("Reddit Api mock service", () => {
 
   describe("when no handlers provided", () => {
     it("uses vanilla reddit api", async () => {
-      const devvRedditApi = createDevvRedditApi(realRedditApi, []);
-      await devvRedditApi.getSubredditById("test_subreddit");
+      const devRedditApi = createdevRedditApi(realRedditApi, []);
+      await devRedditApi.getSubredditById("test_subreddit");
       expect(realRedditApi.getSubredditById).toBeCalledWith("test_subreddit");
     });
   });
 
   describe("with handlers provided", () => {
     it("does not call the real reddit api when handler is provided", async () => {
-      const devvRedditApi = createDevvRedditApi(realRedditApi, [
+      const devRedditApi = createdevRedditApi(realRedditApi, [
         redditApiHandler.getSubredditById((id: string) => {
           return { id } as Subreddit;
         }),
       ]);
-      await devvRedditApi.getSubredditById("test_subreddit");
+      await devRedditApi.getSubredditById("test_subreddit");
       expect(realRedditApi.getSubredditById).not.toBeCalled();
     });
 
     it("calls the handler instead of original method", async () => {
-      const devvRedditApi = createDevvRedditApi(realRedditApi, [
+      const devRedditApi = createdevRedditApi(realRedditApi, [
         redditApiHandler.getSubredditById((id: string) => {
           return { id } as Subreddit;
         }),
       ]);
-      const result = await devvRedditApi.getSubredditById("test_subreddit");
+      const result = await devRedditApi.getSubredditById("test_subreddit");
       expect(realRedditApi.getSubredditById).not.toBeCalled();
       expect(result).toStrictEqual({ id: "test_subreddit" });
     });
@@ -52,36 +52,36 @@ describe("Reddit Api mock service", () => {
       (realRedditApi.getCurrentUser as Mock).mockResolvedValue({
         name: "real_user",
       });
-      const devvRedditApi = createDevvRedditApi(realRedditApi, [
+      const devRedditApi = createdevRedditApi(realRedditApi, [
         redditApiHandler.getSubredditById((id: string) => {
           return { id } as Subreddit;
         }),
       ]);
-      const result = await devvRedditApi.getCurrentUser();
+      const result = await devRedditApi.getCurrentUser();
       expect(realRedditApi.getCurrentUser).toHaveBeenCalledOnce();
       expect(result).toStrictEqual({ name: "real_user" });
     });
 
     it("has modMail method", async () => {
       const mockFn = vi.fn();
-      const devvRedditApi = createDevvRedditApi(realRedditApi, [
+      const devRedditApi = createdevRedditApi(realRedditApi, [
         redditApiHandler.modMail(() => {
           return { getSubreddits: mockFn } as unknown as ModMailService;
         }),
       ]);
-      await devvRedditApi.modMail.getSubreddits();
+      await devRedditApi.modMail.getSubreddits();
       expect(realRedditApi.modMail.getSubreddits).not.toBeCalled();
       expect(mockFn).toBeCalled();
     });
 
     it("has getSpam method", async () => {
       const mockListing = { a: "b" } as unknown as Listing<Post>;
-      const devvRedditApi = createDevvRedditApi(realRedditApi, [
+      const devRedditApi = createdevRedditApi(realRedditApi, [
         redditApiHandler.getSpam(() => {
           return mockListing;
         }),
       ]);
-      const result = devvRedditApi.getSpam({
+      const result = devRedditApi.getSpam({
         type: "post",
         subreddit: "t5_123",
       });
@@ -184,13 +184,13 @@ describe("Reddit Api mock service", () => {
       ] as const;
       allMethodNames.forEach((methodName) => {
         const expectedResult = { called: methodName } as unknown;
-        const devvRedditApi = createDevvRedditApi(realRedditApi, [
+        const devRedditApi = createdevRedditApi(realRedditApi, [
           redditApiHandler[methodName](() => {
             return expectedResult;
           }),
         ]);
         // @ts-expect-error
-        const result = devvRedditApi[methodName]();
+        const result = devRedditApi[methodName]();
         expect(result).toStrictEqual(expectedResult);
       });
     });
