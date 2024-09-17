@@ -32,7 +32,7 @@
     "version": "npm run test && npm run build"
   },
   "peerDependencies": {
-    "@devvit/public-api": ">=0.10.20"
+    "@devvit/public-api": "^0.10.20"
   },
   "devDependencies": {
     "@benasher44/eslint-plugin-implicit-dependencies": "^1.1.3",
